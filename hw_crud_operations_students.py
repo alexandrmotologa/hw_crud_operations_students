@@ -44,13 +44,13 @@ def edit():
             print("STUDENT FOUND!")
 
             new_name = input(" ENTER THE STUDENT'S NAME > ").lower().title()
-            if new_name == "" or new_name == " " or new_name == student_names[i]:
+            if len(new_name.strip()) == 0:
                 new_name = student_names[i]
             else:
                 student_names[i] = new_name
 
             new_spec = input(" ENTER THE STUDENT'S SPECIALITY > ").lower().title()
-            if new_spec == "" or new_spec == " " or new_spec == student_specs[i]:
+            if len(new_spec.strip()) == 0:
                 new_spec = student_specs[i]
             else:
                 student_specs[i] = new_spec
@@ -60,7 +60,7 @@ def edit():
                 if new_grade > 10 or new_grade < 0:
                     print("##### ERROR ##### The lowest grade in educational system is (1), the highest is (10) ##### ERROR #####")
                     break
-                if new_grade == "" or new_grade == " " or new_grade == student_grades[i]:
+                if len(new_grade.strip()) == 0:
                     new_grade = student_grades[i]
                 else:
                     student_grades[i] = new_grade
@@ -72,32 +72,34 @@ def edit():
 
 
 def menu():
-    option =- 1
-    while option != 0:
-        print("\n\n")
-        print("########## MENU ##########")
-        print("1. Show Students List")
-        print("2. Show Student Details")
-        print("3. Edit Student Details")
-        print("4. Delete Student")
-        print("0. Exit")
-        print("##########################")
-        print("CHOOSE OPTION > ")
+    option = - 1
+    try:
+        while option != 0:
+            print("\n\n")
+            print("########## MENU ##########")
+            print("1. Show Students List")
+            print("2. Show Student Details")
+            print("3. Edit Student Details")
+            print("4. Delete Student")
+            print("0. Exit")
+            print("##########################")
+            print("CHOOSE OPTION > ")
 
-        option = int(input())
+            option = int(input())
 
-        if option == 1:
-            read()
-        if option == 2:
-            details()
-        if option == 3:
-            edit()
-        if option == 4:
-            delete()
-        if option > 4 or option <= -1:
-            print("##### ERROR ##### TRY AGAIN ##### ERROR #####")
-            menu()
-        if option == 0:
-            print("##### EXIT #####")
-
+            if option == 1:
+                read()
+            if option == 2:
+                details()
+            if option == 3:
+                edit()
+            if option == 4:
+                delete()
+            if option > 4 or option <= -1:
+                print("##### ERROR ##### TRY AGAIN ##### ERROR #####")
+                menu()
+            if option == 0:
+                print("##### EXIT #####")
+    except ValueError:
+        menu()
 menu()
